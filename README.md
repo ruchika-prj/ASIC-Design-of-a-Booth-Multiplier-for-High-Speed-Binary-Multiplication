@@ -1,0 +1,2 @@
+# ASIC-Design-of-a-Booth-Multiplier-for-High-Speed-Binary-Multiplication
+This document presents the ASIC design and physical implementation of a high-speed Booth Multiplier optimized for signed number multiplication, it is based on Booth algorithm, which reduces the no.of partial products, improving overall multiplication speed and efficiency. Implemented using Verilog, it follows a complete RTL-to-GDSII using Synopsys.
