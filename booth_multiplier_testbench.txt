@@ -1,0 +1,56 @@
+module booth_multiplier_tb; 
+reg clk; 
+reg start; 
+reg [3:0] multiplicand; 
+reg [3:0] multiplier; 
+wire [7:0] product; 
+wire done; 
+booth_multiplier uut ( 
+.clk(clk), 
+.start(start), 
+.multiplicand(multiplicand), 
+.multiplier(multiplier), 
+.product(product), 
+.done(done) 
+); 
+ 
+initial begin 
+clk = 0; 
+forever #5 clk = ~clk; 
+end 
+initial begin 
+start = 0; 
+multiplicand = 4’b0000; 
+multiplier = 4’b0000; 
+ 
+#10; 
+multiplicand = -3; // 4’b1101 
+multiplier = 2; // 4’b0010 
+start = 1; 
+#10 start = 0; 
+wait(done); 
+$display(“Test1: -3 x 2 = %d”, product); 
+ 
+#20; 
+multiplicand = -4; // 4’b1100 
+multiplier = -2; // 4’b1110 
+start = 1; 
+#10 start = 0; 
+ 
+ 
+ 
+wait(done); 
+$display(“Test2: -4 x -2 = %d”, product); 
+ 
+#20; 
+multiplicand = 7; // 4’b0111 
+multiplier = 3; // 4’b0011 
+start = 1; 
+#10 start = 0; 
+ 
+wait(done); 
+$display(“Test3: 7 x 3 = %d”, product); 
+ 
+#20 $finish; 
+end 
+endmodule 
